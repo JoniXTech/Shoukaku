@@ -37,7 +37,13 @@ export interface Playlist {
 		name: string;
 		selectedTrack: number;
 	};
-	pluginInfo: unknown;
+    pluginInfo: {
+        type: 'album' | 'playlist' | 'artist' | 'recomendations';
+        url?: string;
+        artworkUrl?: string;
+        author?: string;
+        totalTracks?: number;
+    } | unknown;
 	tracks: Track[];
 }
 
