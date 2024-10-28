@@ -28,8 +28,16 @@ export interface Track {
 		isrc?: string;
 		sourceName: string;
 	};
-	pluginInfo: unknown;
+	pluginInfo: {
+		albumName?: string;
+		albumArtUrl?: string;
+		artistUrl?: string;
+		artistArtworkUrl?: string;
+		previewUrl?: string;
+		isPreview: boolean;
+	} | undefined;
 }
+
 
 export interface Playlist {
 	encoded: string;
@@ -43,7 +51,7 @@ export interface Playlist {
 		artworkUrl?: string;
 		author?: string;
 		totalTracks?: number;
-	} | unknown;
+	} | undefined;
 	tracks: Track[];
 }
 
