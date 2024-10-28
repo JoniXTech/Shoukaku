@@ -74,7 +74,7 @@ export interface ErrorResult {
 
 export type LavalinkResponse = TrackResult | PlaylistResult | SearchResult | EmptyResult | ErrorResult;
 
-export type SeachResponse = {
+export interface SearchResponse {
     tracks: Track[];
     albums: Playlist[];
     artists: Playlist[];
@@ -208,7 +208,7 @@ export class Rest {
      * @param types The types to search for (track, album, artist, playlist)
      * @returns A promise that resolves to a Lavalink response
      */
-    public search(query: string, types: string[]): Promise<SeachResponse | undefined> {
+    public search(query: string, types: string[]): Promise<SearchResponse | undefined> {
         const options = {
             endpoint: '/loadsearch',
             options: { params: { query, types: types.join(',') }}
