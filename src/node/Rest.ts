@@ -74,6 +74,13 @@ export interface ErrorResult {
 
 export type LavalinkResponse = TrackResult | PlaylistResult | SearchResult | EmptyResult | ErrorResult;
 
+export type SeachResponse = {
+    tracks: Track[];
+    albums: Playlist[];
+    artists: Playlist[];
+    playlists: Playlist[];
+}
+
 export interface Address {
 	address: string;
 	failingTimestamp: number;
@@ -194,6 +201,20 @@ export class Rest {
 	protected get sessionId(): string {
 		return this.node.sessionId!;
 	}
+
+    /**
+     * Search for a track/album/artist/playlist
+     * @param query The query to search for
+     * @param types The types to search for (track, album, artist, playlist)
+     * @returns A promise that resolves to a Lavalink response
+     */
+    public search(query: string, types: string[]): Promise<SeachResponse | undefined> {
+        const options = {
+            endpoint: '/loadsearch',
+            options: { params: { query, types: types.join(',') }}
+        };
+        return this.fetch(options);
+    }
 
 	/**
 	 * Resolve a track
