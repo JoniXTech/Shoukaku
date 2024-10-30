@@ -39,7 +39,6 @@ export interface Track {
 	} | undefined;
 }
 
-
 export interface Playlist {
 	encoded: string;
 	info: {
