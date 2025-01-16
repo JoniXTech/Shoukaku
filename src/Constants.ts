@@ -4,11 +4,9 @@ import { NodeOption, ShoukakuOptions } from './Shoukaku';
 
 export enum State {
 	CONNECTING,
-	NEARLY,
 	CONNECTED,
-	RECONNECTING,
 	DISCONNECTING,
-	DISCONNECTED
+	IDLE
 }
 
 export enum VoiceState {
