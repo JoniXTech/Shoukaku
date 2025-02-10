@@ -46,7 +46,7 @@ export interface Playlist {
 		selectedTrack: number;
 	};
 	pluginInfo: {
-		type: 'album' | 'playlist' | 'artist' | 'recomendations';
+		type: 'album' | 'playlist' | 'artist' | 'recommendations';
 		url?: string;
 		artworkUrl?: string;
 		author?: string;
