@@ -35,6 +35,8 @@ export interface Track {
 		artistArtworkUrl?: string;
 		previewUrl?: string;
 		isPreview: boolean;
+		genres?: string[];
+		playlistName?: string;
 	} | undefined;
 }
 
