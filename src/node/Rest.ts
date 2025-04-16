@@ -30,6 +30,7 @@ export interface Track {
 	};
 	pluginInfo: {
 		albumName?: string;
+		albumUrl?: string;
 		albumArtUrl?: string;
 		artistUrl?: string;
 		artistArtworkUrl?: string;
