@@ -29,16 +29,17 @@ export interface Track {
 		sourceName: string;
 	};
 	pluginInfo: {
+		[key: string]: unknown;
 		albumName?: string;
 		albumUrl?: string;
 		albumArtUrl?: string;
 		artistUrl?: string;
 		artistArtworkUrl?: string;
 		previewUrl?: string;
-		isPreview: boolean;
+		isPreview?: boolean;
 		genres?: string[];
 		playlistName?: string;
-	} | undefined;
+	};
 }
 
 export interface Playlist {
@@ -48,12 +49,13 @@ export interface Playlist {
 		selectedTrack: number;
 	};
 	pluginInfo: {
+		[key: string]: unknown;
 		type: 'album' | 'playlist' | 'artist' | 'recommendations';
 		url?: string;
 		artworkUrl?: string;
 		author?: string;
 		totalTracks?: number;
-	} | undefined;
+	};
 	tracks: Track[];
 }
 
