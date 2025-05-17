@@ -1,4 +1,4 @@
-import { Versions } from '../Constants';
+import { State, Versions } from '../Constants';
 import type { FilterOptions } from '../guild/Player';
 import type { NodeOption } from '../Shoukaku';
 import type { Node, NodeInfo, Stats } from './Node';
@@ -426,13 +426,26 @@ export class Rest {
 			const response = await request
 				.json()
 				.catch(() => null) as LavalinkRestError | null;
-			throw new RestError(response ?? {
+
+			const errorPayload = new RestError(response ?? {
 				timestamp: Date.now(),
 				status: request.status,
 				error: 'Unknown Error',
 				message: 'Unexpected error response from Lavalink server',
 				path: endpoint
 			});
+
+			if (
+				errorPayload.status === 404 &&
+				errorPayload.error === 'Not Found' &&
+				errorPayload.message === 'Session not found'
+			) {
+				if (this.node.state === State.CONNECTED) {
+					this.node.disconnect(1011, 'Session not found');
+				}
+			}
+
+			throw errorPayload;
 		}
 		try {
 			return await request.json() as T;
